@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "724711897311",
+    "firebase_url": "https://nuclear-code-inspector.firebaseio.com",
+    "project_id": "nuclear-code-inspector",
+    "storage_bucket": "nuclear-code-inspector.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:724711897311:android:4ceac4fcbaff4eff66116a",
+        "android_client_info": {
+          "package_name": "com.shibuyaxpress.nuclearcodeinspector"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "724711897311-c9pn8aemp3qrugert75qlpprm9uh26cq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shibuyaxpress.nuclearcodeinspector",
+            "certificate_hash": "170605552c75205c316eb6a13edbb9422a99d32b"
+          }
+        },
+        {
+          "client_id": "724711897311-kk6el073e6p91fbbp5ho9rsem3arcp7o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdQnFM8CdvX-g4rD4HgWxAaTU-DZ3o5xM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "724711897311-kk6el073e6p91fbbp5ho9rsem3arcp7o.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "724711897311-v9u20qq79g50br4tg51okglglf66j21d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.shibuyaxpress.Nuclear-Code-Inspector"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
