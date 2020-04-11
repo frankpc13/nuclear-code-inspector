@@ -1,4 +1,4 @@
-package com.shibuyaxpress.nuclearcodeinspector
+package com.shibuyaxpress.nuclearcodeinspector.ui.home.detail
 
 import androidx.lifecycle.ViewModel
 

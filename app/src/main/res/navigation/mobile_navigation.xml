@@ -30,8 +30,8 @@
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/fragment_detail_nuke"
-        android:name="com.shibuyaxpress.nuclearcodeinspector.DetailNukeFragment"
-        android:label="fragment_detail_nuke"
+        android:name="com.shibuyaxpress.nuclearcodeinspector.ui.home.detail.DetailNukeFragment"
+        android:label="Nuke Code Details"
         tools:layout="@layout/fragment_detail_nuke" >
         <argument android:name="item"
             app:argType="com.shibuyaxpress.nuclearcodeinspector.models.Preview"/>

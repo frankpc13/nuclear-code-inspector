@@ -1,11 +1,10 @@
-package com.shibuyaxpress.nuclearcodeinspector
+package com.shibuyaxpress.nuclearcodeinspector.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.preference.PreferenceManager
-import androidx.core.os.postDelayed
+import com.shibuyaxpress.nuclearcodeinspector.R
 
 class MainActivity : AppCompatActivity() {
 

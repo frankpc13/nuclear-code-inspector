@@ -1,4 +1,4 @@
-package com.shibuyaxpress.nuclearcodeinspector
+package com.shibuyaxpress.nuclearcodeinspector.activities
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.shibuyaxpress.nuclearcodeinspector.R
 
 class MenuActivity : AppCompatActivity() {
 
@@ -20,7 +21,9 @@ class MenuActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_codes
+                R.id.navigation_home,
+                R.id.navigation_dashboard,
+                R.id.navigation_codes
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

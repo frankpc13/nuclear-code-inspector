@@ -25,7 +25,6 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
-    var direction: NavDirections? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,7 +58,12 @@ class HomeFragment : Fragment() {
                 item.description = param.description
                 item.image = param.images.first()
                 item.title = param.title
-                direction = HomeFragmentDirections.actionNavigationHomeToDetailNukeFragment(item)
+                item.code = inputCode
+                var aux = "<meta name=\"twitter:description\" content=\""
+                var index = param.htmlCode.indexOf(aux)
+                item.description = if (index == -1) null else param.htmlCode.substringAfter(aux).substringBefore("\">")
+                var direction = HomeFragmentDirections.actionNavigationHomeToDetailNukeFragment(item!!)
+                Navigation.findNavController(root).navigate(direction!!)
             }
 
         }
@@ -68,8 +72,6 @@ class HomeFragment : Fragment() {
             inputCode = editTextCode.editText!!.text.toString()
             crawler.makePreview(linkPreview, "https://nhentai.net/g/${inputCode}/")
             Toast.makeText(context, inputCode, Toast.LENGTH_SHORT).show()
-
-            Navigation.findNavController(it).navigate(direction!!)
         }
 
         return root

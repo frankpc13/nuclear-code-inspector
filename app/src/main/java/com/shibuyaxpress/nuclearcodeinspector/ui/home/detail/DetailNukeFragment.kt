@@ -1,4 +1,4 @@
-package com.shibuyaxpress.nuclearcodeinspector
+package com.shibuyaxpress.nuclearcodeinspector.ui.home.detail
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -10,7 +10,7 @@ import android.widget.TextView
 import coil.api.load
 import com.google.firebase.firestore.FirebaseFirestore
 import com.shibuyaxpress.nuclearcodeinspector.DetailNukeFragmentArgs.Companion.fromBundle
-import com.shibuyaxpress.nuclearcodeinspector.models.NukeCode
+import com.shibuyaxpress.nuclearcodeinspector.R
 import com.shibuyaxpress.nuclearcodeinspector.models.Preview
 import khronos.Dates
 import khronos.toString
@@ -19,7 +19,8 @@ import khronos.toString
 class DetailNukeFragment : Fragment() {
 
     companion object {
-        fun newInstance() = DetailNukeFragment()
+        fun newInstance() =
+            DetailNukeFragment()
     }
 
     private lateinit var titleText: TextView

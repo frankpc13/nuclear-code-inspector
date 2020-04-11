@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MenuActivity"
+            android:name=".activities.MenuActivity"
             android:label="@string/title_activity_menu"
             android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

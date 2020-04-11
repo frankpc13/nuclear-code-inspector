@@ -76,4 +76,6 @@ dependencies {
     //link previewer
     implementation 'org.jsoup:jsoup:1.8.3' // required
     implementation 'com.leocardz:link-preview:2.0.0@aar'
+    //time
+    implementation 'com.github.hotchemi:khronos:0.9.0'
 }
