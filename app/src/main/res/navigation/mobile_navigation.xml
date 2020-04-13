@@ -27,7 +27,11 @@
         android:id="@+id/navigation_codes"
         android:name="com.shibuyaxpress.nuclearcodeinspector.ui.codes.CodesFragment"
         android:label="@string/title_codes"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_notifications" >
+        <action
+            android:id="@+id/action_navigation_codes_to_webPreviewFragment"
+            app:destination="@id/webPreviewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fragment_detail_nuke"
         android:name="com.shibuyaxpress.nuclearcodeinspector.ui.home.detail.DetailNukeFragment"
@@ -35,5 +39,14 @@
         tools:layout="@layout/fragment_detail_nuke" >
         <argument android:name="item"
             app:argType="com.shibuyaxpress.nuclearcodeinspector.models.Preview"/>
+    </fragment>
+    <fragment
+        android:id="@+id/webPreviewFragment"
+        android:name="com.shibuyaxpress.nuclearcodeinspector.WebPreviewFragment"
+        android:label="web_preview_fragment"
+        tools:layout="@layout/web_preview_fragment" >
+        <argument
+            android:name="UrlSelected"
+            app:argType="string" />
     </fragment>
 </navigation>

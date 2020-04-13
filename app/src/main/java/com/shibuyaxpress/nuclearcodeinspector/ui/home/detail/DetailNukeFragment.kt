@@ -9,9 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import coil.api.load
 import com.google.firebase.firestore.FirebaseFirestore
-import com.shibuyaxpress.nuclearcodeinspector.DetailNukeFragmentArgs.Companion.fromBundle
 import com.shibuyaxpress.nuclearcodeinspector.R
 import com.shibuyaxpress.nuclearcodeinspector.models.Preview
+import com.shibuyaxpress.nuclearcodeinspector.ui.home.detail.DetailNukeFragmentArgs.Companion.fromBundle
 import khronos.Dates
 import khronos.toString
 

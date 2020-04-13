@@ -21,10 +21,10 @@
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="w,1:1.35"
+                app:layout_constraintDimensionRatio="w,1:1.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/wachan" />
+                app:srcCompat="@drawable/shiho_cover" />
 
             <TextView
                 android:id="@+id/titleNukeText"

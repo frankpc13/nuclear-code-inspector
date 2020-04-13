@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.shibuyaxpress.nuclearcodeinspector.R
 import com.shibuyaxpress.nuclearcodeinspector.adapters.NukeAdapter
 import com.shibuyaxpress.nuclearcodeinspector.models.NukeCode
+import com.shibuyaxpress.nuclearcodeinspector.models.Preview
 import com.shibuyaxpress.nuclearcodeinspector.utils.OnRecyclerItemClickListener
 
 class CodesFragment : Fragment(), OnRecyclerItemClickListener {
@@ -69,5 +71,8 @@ class CodesFragment : Fragment(), OnRecyclerItemClickListener {
 
     override fun onItemClicked(item: Any, position: Int, view: View) {
         Toast.makeText(context,"dont work",Toast.LENGTH_SHORT).show()
+        var x  = item as NukeCode
+        var direction = CodesFragmentDirections.actionNavigationCodesToWebPreviewFragment(x.url!!)
+        Navigation.findNavController(view).navigate(direction)
     }
 }

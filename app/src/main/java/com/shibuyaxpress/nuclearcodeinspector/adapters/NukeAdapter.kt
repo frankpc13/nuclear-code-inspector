@@ -14,6 +14,7 @@ class NukeAdapter(val itemClickListener: OnRecyclerItemClickListener) : Recycler
 
     fun setList(list:ArrayList<NukeCode>){
         this.list = list
+        list.sortBy { it.nukeCode }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NukeHolder {

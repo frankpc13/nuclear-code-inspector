@@ -35,5 +35,9 @@ class NukeHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             placeholder(R.drawable.wachan)
             crossfade(true)
         }
+
+        card!!.setOnClickListener {
+            clickListener.onItemClicked(item, position, itemView)
+        }
     }
 }
