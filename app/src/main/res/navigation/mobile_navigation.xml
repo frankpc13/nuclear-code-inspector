@@ -39,6 +39,9 @@
         tools:layout="@layout/fragment_detail_nuke" >
         <argument android:name="item"
             app:argType="com.shibuyaxpress.nuclearcodeinspector.models.Preview"/>
+        <action
+            android:id="@+id/action_fragment_detail_nuke_to_webPreviewFragment"
+            app:destination="@id/webPreviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/webPreviewFragment"
