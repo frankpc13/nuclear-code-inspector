@@ -24,8 +24,12 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.shibuyaxpress.nuclearcodeinspector.R
+import com.shibuyaxpress.nuclearcodeinspector.models.User
 
 class DashboardFragment : Fragment() {
 
@@ -105,13 +109,19 @@ class DashboardFragment : Fragment() {
     }
 
     private fun fillUserData(user:FirebaseUser?){
-        imageProfile.load(user!!.photoUrl){
-            crossfade(true)
-            placeholder(R.drawable.profile)
-            error(R.drawable.profile)
-            transformations(CircleCropTransformation())
+        val firestore = Firebase.firestore
+        val userData = firestore.collection("users")
+            .document(user?.uid.toString()).get().addOnSuccessListener {
+                Log.d("user data", "${it.data}")
+                val data = it.toObject<User>()
+                imageProfile.load(data?.imageProfile) {
+                    crossfade(true)
+                    placeholder(R.drawable.profile)
+                    error(R.drawable.profile)
+                    transformations(CircleCropTransformation())
+                }
+                usernameText.text = "${data?.username}"
         }
-        usernameText.text = "${user.displayName}"
     }
 
     private fun updateUI(user: FirebaseUser?){
@@ -162,10 +172,13 @@ class DashboardFragment : Fragment() {
                     //success
                     Log.d(TAG,"signInWithCredential:success")
                     val user = auth.currentUser
+                    Log.d("USER","${user?.displayName} ${user?.uid}")
                     updateUI(user)
                 } else {
                     Log.w(TAG, "signInWithCredential:failure", it.exception)
-                    Snackbar.make(rootLayout, "Authentication failed.", Snackbar.LENGTH_SHORT).show()
+                    Snackbar
+                        .make(rootLayout, "Authentication failed.", Snackbar.LENGTH_SHORT)
+                        .show()
                     updateUI(null)
                 }
             }
