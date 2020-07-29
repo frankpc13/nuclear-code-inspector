@@ -21,13 +21,17 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.shibuyaxpress.nuclearcodeinspector.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_codes"
         android:name="com.shibuyaxpress.nuclearcodeinspector.ui.codes.CodesFragment"
         android:label="@string/title_codes"
-        tools:layout="@layout/fragment_notifications" >
+        tools:layout="@layout/fragment_codes" >
         <action
             android:id="@+id/action_navigation_codes_to_webPreviewFragment"
             app:destination="@id/webPreviewFragment" />
@@ -52,4 +56,9 @@
             android:name="UrlSelected"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.shibuyaxpress.nuclearcodeinspector.ui.dashboard.editProfile.EditProfileFragment"
+        android:label="Edit My Profile"
+        tools:layout="@layout/edit_profile_fragment" />
 </navigation>

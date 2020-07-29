@@ -12,6 +12,8 @@ import androidx.constraintlayout.widget.Group
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -29,7 +31,11 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.shibuyaxpress.nuclearcodeinspector.R
+import com.shibuyaxpress.nuclearcodeinspector.models.NukeCode
 import com.shibuyaxpress.nuclearcodeinspector.models.User
+import com.shibuyaxpress.nuclearcodeinspector.ui.codes.CodesFragmentDirections
+import khronos.Dates
+import khronos.toString
 
 class DashboardFragment : Fragment() {
 
@@ -44,6 +50,8 @@ class DashboardFragment : Fragment() {
     private lateinit var codesText: TextView
     private lateinit var usernameText: TextView
     private lateinit var regDateText: TextView
+    private lateinit var codeAmountTextView: TextView
+    private lateinit var db: FirebaseFirestore
     private var user: FirebaseUser? = null
 
     val TAG = DashboardFragment::class.java.simpleName
@@ -68,8 +76,11 @@ class DashboardFragment : Fragment() {
         imageProfile = rootLayout.findViewById(R.id.imageProfile)
         usernameText = rootLayout.findViewById(R.id.usernameText)
         codesText = rootLayout.findViewById(R.id.textCodesAmount)
+        codeAmountTextView = rootLayout.findViewById(R.id.codeAmountTextView)
 
         groupProfile.visibility = View.INVISIBLE
+
+        db = Firebase.firestore
         auth = FirebaseAuth.getInstance()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -87,6 +98,7 @@ class DashboardFragment : Fragment() {
         inflater.inflate(R.menu.menu_toolbar_dashboard, menu)
         if (user == null){
             menu.findItem(R.id.top_logout).isVisible = false
+            menu.findItem(R.id.top_edit_profile).isVisible = false
         }
         super.onCreateOptionsMenu(menu, inflater)
     }
@@ -94,6 +106,12 @@ class DashboardFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem) = when(item.itemId) {
         R.id.top_about -> {
             //go to about app
+            true
+        }
+        R.id.top_edit_profile -> {
+            val direction = DashboardFragmentDirections.actionNavigationDashboardToEditProfileFragment()
+            //val direction = CodesFragmentDirections.actionNavigationCodesToWebPreviewFragment(x.url!!)
+            Navigation.findNavController(view!!).navigate(direction)
             true
         }
         R.id.top_logout -> {
@@ -122,6 +140,9 @@ class DashboardFragment : Fragment() {
                 }
                 usernameText.text = "${data?.username}"
         }
+        firestore.collection("users").document(user?.uid.toString()).collection("codes")
+            .get().addOnSuccessListener {
+                codeAmountTextView.text = it.size().toString() }
     }
 
     private fun updateUI(user: FirebaseUser?){
@@ -173,7 +194,26 @@ class DashboardFragment : Fragment() {
                     Log.d(TAG,"signInWithCredential:success")
                     val user = auth.currentUser
                     Log.d("USER","${user?.displayName} ${user?.uid}")
-                    updateUI(user)
+                    if (it.result!!.additionalUserInfo!!.isNewUser) {
+                        val data = hashMapOf(
+                            "name" to user?.displayName,
+                            "lastname" to "",
+                            "imageProfile" to "https://scontent.flim10-1.fna.fbcdn.net/v/t1.0-9/105478045_884579395365866_1282756049813813128_n.jpg?_nc_cat=109&_nc_sid=09cbfe&_nc_ohc=NUeQuPPr3hwAX-FTdd0&_nc_ht=scontent.flim10-1.fna&oh=354e447777d8f574aaa3835d6422c99f&oe=5F44A312",
+                            "username" to user?.email,
+                            "createdAt" to Dates.today.toString("yyyy-MM-dd HH:mm:SS")
+                        )
+                        val db = Firebase.firestore
+                        db.collection("users").document(user!!.uid)
+                            .set(data).addOnSuccessListener {
+                                Log.d("Create new USER", "Document Added for freshman!")
+                                updateUI(user)
+                            }
+                            .addOnFailureListener {e ->
+                                Log.w("Create NEW User", "Error Creating user", e)
+                            }
+                    } else {
+                        updateUI(user)
+                    }
                 } else {
                     Log.w(TAG, "signInWithCredential:failure", it.exception)
                     Snackbar

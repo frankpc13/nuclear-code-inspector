@@ -39,5 +39,9 @@ class NukeHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         card!!.setOnClickListener {
             clickListener.onItemClicked(item, position, itemView)
         }
+        card!!.setOnLongClickListener {
+            clickListener.onItemLongClicked(item, position, itemView)
+            true
+        }
     }
 }

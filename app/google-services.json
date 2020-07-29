@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "724711897311-6edihfpl0bc5ngm5es8tbhthvtved3u6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shibuyaxpress.nuclearcodeinspector",
+            "certificate_hash": "d742bfe5275736b7b0c6a65da063ec15a7f3b330"
+          }
+        },
+        {
+          "client_id": "724711897311-1vatbq6dn9dmv91jfbdkqgnq29v0jcgu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shibuyaxpress.nuclearcodeinspector",
+            "certificate_hash": "e6d2e980d3649a81c71ef065449c0c8aeb935e88"
+          }
+        },
+        {
           "client_id": "724711897311-c9pn8aemp3qrugert75qlpprm9uh26cq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

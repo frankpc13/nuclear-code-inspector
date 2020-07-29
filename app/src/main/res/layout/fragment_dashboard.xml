@@ -43,12 +43,13 @@
     <ImageView
         android:id="@+id/imageProfile"
         android:layout_width="96dp"
-        android:layout_height="0dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:adjustViewBounds="true"
         android:cropToPadding="true"
         app:layout_constraintDimensionRatio="h,1:1"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         tools:src="@tools:sample/avatars" />
 
@@ -58,21 +59,17 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center"
         android:text=""
-        android:textSize="24sp"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageProfile"
         app:layout_constraintTop_toBottomOf="@+id/textWelcome"
         tools:text="Normie user wih xxx description" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="379dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -97,9 +94,10 @@
         android:id="@+id/textCodesAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:text="@string/register_codes_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -114,5 +112,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="textCodesAmount,imageProfile,textWelcome,usernameText" />
+
+    <TextView
+        android:id="@+id/codeAmountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textCodesAmount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

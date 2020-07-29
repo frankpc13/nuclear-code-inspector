@@ -7,7 +7,11 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.addCallback
+import androidx.navigation.fragment.findNavController
 import coil.api.load
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.shibuyaxpress.nuclearcodeinspector.R
 import com.shibuyaxpress.nuclearcodeinspector.models.Preview
@@ -29,6 +33,7 @@ class DetailNukeFragment : Fragment() {
     private lateinit var imagePreview: ImageView
     private lateinit var viewModel: DetailNukeViewModel
     private lateinit var db: FirebaseFirestore
+    private var user: FirebaseUser? = null
 
     private val preview by lazy {
         fromBundle(arguments!!).item
@@ -54,7 +59,7 @@ class DetailNukeFragment : Fragment() {
         titleText.text = preview.title
         descriptionText.text = preview.description
         codeText.text = preview.code
-
+        user = FirebaseAuth.getInstance().currentUser
         return root
     }
 
@@ -66,12 +71,16 @@ class DetailNukeFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_toolbar_detail, menu)
+        if (user == null){
+            menu.findItem(R.id.top_save).isVisible = false
+        }
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.top_save -> {
             createNukeCodeOnFirestore(preview)
+            findNavController().popBackStack()
             true
         }
         R.id.top_share -> {
@@ -92,7 +101,7 @@ class DetailNukeFragment : Fragment() {
             "createdAt" to currentDate
         )
 
-        db.collection("codes")
+        db.collection("users").document(user!!.uid).collection("codes")
             .add(data)
             .addOnSuccessListener {
                 Log.d("DetailNukeFragment","member with ID :${it.id}")
