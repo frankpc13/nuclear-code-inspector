@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">Nuclear Code Inspector</string>
+    <string name="app_name">Nuke Code Inspector</string>
     <string name="title_activity_menu">MenuActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_codes">Codes</string>
-    <string name="login_description">Registrate para disfrutar de varias funcionalidades</string>
-    <string name="welcome_text">Bienvenido !!</string>
-    <string name="register_codes_label">Codigos registrados</string>
+    <string name="login_description">Sign in to discover new features</string>
+    <string name="welcome_text">Welcome!!</string>
+    <string name="register_codes_label">Nuke codes registered:</string>
 </resources>
